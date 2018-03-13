@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Formulário de opinião musical</title>
+</head>
+
+<body>
+    <h1>Formulário de opinião musical</h1>
+
+    Por favor, preencha o formulário abaixo e clique no botão Enviar.
+
+    <form id='login' method="GET">
+        <fieldset>
+            <legend>Dados Básicos</legend>
+            Nome:
+            <input type="text" id="name">
+            <br> E-mail:
+            <input type="email" id="email" placeholder="seunome@dominio.com.br">
+            <br> Twitter:
+            <input type="text" id="twitter" placeholder="@joaozinhoxd">
+            <br> Data de Nascimento:
+            <input type="date" name="birthday" id="birthday">
+        </fieldset>
+        <fieldset>
+            <legend>Seu estilo de música favorita é:</legend>
+            <input type="radio" name="musicgenre" id="pop">
+            <label for="pop">Pop</label>
+            <br>
+            <input type="radio" name="musicgenre" id="classical">
+            <label for="classical">Clássico</label>
+            <br>
+            <input type="radio" name="musicgenre" id="rock">
+            <label for="rock">Rock</label>
+            <br>
+            <input type="radio" name="musicgenre" id="mpb">
+            <label for="mpb">MPB</label>
+            <br>
+            <input type="radio" name="musicgenre" id="prog">
+            <label for="prog">Progressivo</label>
+        </fieldset>
+        <fieldset>
+            <legend>Seus instrumentos favoritos são:</legend>
+            <input type="checkbox" name="instruments" id="acoustic-guitar">
+            <label for="acoustic-guitar">Violão</label>
+            <input type="checkbox" name="instruments" id="electrical-guitar">
+            <label for="electrical-guitar">Guitarra</label>
+            <input type="checkbox" name="instruments" id="bass">
+            <label for="bass">Baixo</label>
+            <input type="checkbox" name="instruments" id="drums">
+            <label for="drums">Bateria</label>
+            <input type="checkbox" name="instruments" id="violin">
+            <label for="violin">Violino</label>
+            <input type="checkbox" name="instruments" id="oboe">
+            <label for="oboe">Oboé</label>
+        </fieldset>
+        <fieldset>
+            <legend>Dados Complementares</legend>
+            Cor de instrumento favorita:
+            <input type="color" name="instrument-color" id="instrument-color">
+            <br> Ano do seu álbum favorito:
+            <input type="number" name="album-year" id="album-year" value="2002" max="2018">
+            <br> Nota para este site:
+            <input type="range" name="site-rating" id="site-rating" min=0 max=10>
+        </fieldset>
+        <fieldset>
+            <legend>Melhor divisão de compasso</legend>
+            <select name="compasso" id="compasso">
+                <option value="1">4/4</option>
+                <option value="2">3/4</option>
+                <option value="3">5/4</option>
+                <option value="4">6/4</option>
+                <option value="5">7/4</option>
+                <option value="6">11/4</option>
+            </select>
+        </fieldset>
+        <fieldset>
+            <legend>Submeta sua partitura/tablatura favorita</legend>
+            <input type="file" name="sheet" id="sheet">
+        </fieldset>
+        <fieldset>
+            <legend>Digite sua letra de música favorita</legend>
+            <textarea name="lyric" id="lyric" cols="78" rows="8" placeholder="Lalala, lalaaaa..."></textarea>
+        </fieldset>
+        <br>
+        <input type="submit" name="submit" id="submit" value="Enviar">
+        <br>
+        <br>
+    </form>
+</body>
+
+</html>
