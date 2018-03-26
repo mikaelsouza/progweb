@@ -1,0 +1,25 @@
+div {
+    text-align: center;
+    font-family: 'monaco';
+    border: 5px solid black;
+    border-top-left-radius: 25%;
+    border-bottom-right-radius: 25%;
+    padding: 40px 40px;
+    background-color: rgba(255, 255, 255, 0.7);
+    margin-top: 15%;
+    margin-left: 5%;
+    width: 1000px;
+    height: 100px;
+    box-shadow: 3px 3px 3px 3px rgba(122, 122, 122, 0.3),
+                20px 20px 20px 20px rgba(0, 0, 0, 0.5);
+}
+
+iframe{
+    margin-left: 75%
+}
+
+body {
+    background-image: url("img/kaiju.gif");
+    background-repeat: no-repeat;
+    background-size: 100%
+}
