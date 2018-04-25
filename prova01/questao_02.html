@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Raio, área e volume</title>
+</head>
+
+<body>
+    <input type="text" name="raio" id="raio"> Raio da Esfera
+    <br>
+    <input type="text" name="area" id="area"> Área
+    <br>
+    <input type="text" name="volume" id="volume"> Volume
+    <br>
+    <button id="button" onclick="calcular()">Calcular!</button>
+    <script>
+        function calcArea(raio) {
+            return 4 * Math.PI * raio * raio
+        }
+
+        function calcVolume(raio) {
+            return (4 * Math.PI * raio * raio * raio) / 3
+        }
+
+        function calcular() {
+            var raioText = document.getElementById("raio")
+            var areaText = document.getElementById("area")
+            var volumeText = document.getElementById("volume")
+
+            areaText.value = calcArea(parseInt(raioText.value))
+            volumeText.value = calcVolume(parseInt(raioText.value))
+        }
+
+    </script>
+</body>
+
+
+</html>
