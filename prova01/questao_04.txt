@@ -1,0 +1,24 @@
+Hoisting é uma característica da linguagem javascript na qual o código é lido
+inicialmente para leitura de declaração de variáveis e funções antes da
+interpretação final dada pelo browser/nodejs.
+
+Isso quer dizer que mesmo que existam variáveis declaradas no fim de uma função,
+por exemplo, ela pode ser utilizada num momento anterior. Entretando apenas
+a declaração é considerada no Hoisting, se há declaração e atribuição de valor,
+a variável será declarada, mas seu valor só será atribuído quando o interpretador
+chegar na linha de código onde houve a declaração.
+
+Exemplo:
+
+function soma(a, b){
+
+    soma = a + b;
+
+    var soma;
+
+    return soma;
+}
+
+Na primeira passagem do navegador/node, a variável soma vai ser declarada e
+poderá ser utilizada para realizar a soma (soma = a + b) mesmo que a declaração
+ocorra depois.
