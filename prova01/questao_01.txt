@@ -1,0 +1,26 @@
+Primeiro erro se dá no comentário na linha 4.
+No HTML, os comentários não são escritos utilizando /* e */
+Este é um modo de comentários vindos de linguagens baseadas em C.
+Em HTML, utiliza-se <!-- para abrir comentários e --> para fecha-los.
+
+Segundo erro acontece nas linhas 8 e 9 da definição de CSS para o
+elemento com ID "para". Na atribuição de valores CSS, não são utilizados
+'=' para atribuir valores, e sim ":", desta forma, o css correto seria
+
+#para {
+    color: red;
+    background-color: blue;
+}
+
+Na linha 17 temos o terceiro erro, onde a tag <strong> é utilizada para
+deixar o texto em negrito, mas a mesma não é fechada. Para corrigir o problema
+deve-se fechar a tag strong com </strong> onde quer que o texto deixe de ser
+negrito.
+
+Por fim, na linha 25, temos o acesso a um elemento do objeto utilizando a
+palavra that. Para acessar um atributo do objeto atual, utiliza-se a palavra
+this em vez de that. O certo seria então escrever
+
+getNome: function(){
+    return this.nome;
+}
