@@ -1,0 +1,36 @@
+Histórico de commits:
+
+commit f8dcaca5a80f78fe55bbc62113c8210628f1ff7c (HEAD -> master)
+Author: Mikael Souza <mss2@icomp.ufam.edu.br>
+Date:   Wed Apr 25 09:13:59 2018 -0400
+
+    Questão 4 adicionada
+
+commit 99fe45f59f82e3e322556979ee257c35e292c25e
+Author: Mikael Souza <mss2@icomp.ufam.edu.br>
+Date:   Wed Apr 25 09:13:41 2018 -0400
+
+    Questão 3 adicionada
+
+commit 502a728e297c16bb05ae12bda359bd16d8c6e7fc
+Author: Mikael Souza <mss2@icomp.ufam.edu.br>
+Date:   Wed Apr 25 09:13:29 2018 -0400
+
+    Questão 2 adicionada
+
+commit ced57d4c8a904f2d51bc45c1aafeea1cce36b5fe
+Author: Mikael Souza <mss2@icomp.ufam.edu.br>
+Date:   Wed Apr 25 09:13:19 2018 -0400
+
+    Questão 1 adicionada
+
+a) Git status serve para vermos quais arquivos estão sendo "rastreados"
+(tracking) pelo git e nos auxilia a saber quais arquivos estão na Staging
+Area ou que foram modificados e que estão prontos para ser adicionados/commitados.
+
+b) Nos nossos repositórios, as vezes temos arquivos sigilosos ou que simplesmente
+não queremos que seja rastreado pelo git. Para isso, utilizamos o arquivo .gitignore
+onde escrevemos nome de arquivos que queremos que o git ignore, assim, se utilizarmos
+o comando "git add *" em uma pasta, os arquivos com nome dentro do .gitignore
+serão ignorados mesmo que o comando anterior mande adicionar todos os arquivos
+utilizando o caractere *. 
