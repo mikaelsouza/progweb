@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Formulário de Contrato</title>
+</head>
+
+<body>
+    <h1>Formulário de Contrato</h1>
+
+    <br> Por favor, preencha o formulário abaixo e clique no botão Enviar Mensagem. Agradecemos por seu contato.
+    <form action="result.php" method="get">
+        <fieldset>
+            <legend>Dados Básicos</legend>
+            Nome:
+            <input type="text" name="name" id="name">
+            <br> E-mail:
+            <input type="text" name="email" id="email">
+            <br> Website:
+            <input type="text" name="website" id="website" placeholder="http://">
+            <br>
+
+        </fieldset>
+        <fieldset>
+            <legend>Digite Sua Mensagem</legend>
+            <textarea name="message" id="message" cols="60" rows="6">Este é o valor padrão!</textarea>
+        </fieldset>
+        <br>
+        <input type="reset" value="Deletar Dados">
+        <input type="submit" value="Enviar Mensagem">
+
+    </form>
+
+
+</body>
+
+</html>
