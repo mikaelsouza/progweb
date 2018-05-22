@@ -1,40 +1,44 @@
 .para-direita {
-   background-image: url(skier.png);
-   background-position: -25px -6px;
-   width: 22px;
-   height: 28px;
+    background-image: url(skier.png);
+    background-position: -25px -6px;
+    width: 22px;
+    height: 28px;
 }
 
 .para-esquerda {
-   background-image: url(skier.png);
-   background-position: -26px -43px;
-   width: 22px;
-   height: 28px;
+    background-image: url(skier.png);
+    background-position: -26px -43px;
+    width: 22px;
+    height: 28px;
 }
 
 .para-frente {
-   background-image: url(skier.png);
-   background-position: -67px -2px;
-   width: 15px;
-   height: 32px;
+    background-image: url(skier.png);
+    background-position: -67px -2px;
+    width: 15px;
+    height: 32px;
 }
 
 .arvore {
-   background-image: url(obstacles.png);
-   background-position: -0px -31px;   
-   width: 28px;
-   height: 32px;   
-   position: absolute;
+    background-image: url(obstacles.png);
+    background-position: -0px -31px;   
+    width: 28px;
+    height: 32px;   
+    position: absolute;
 }
 
 #montanha {
-   border: 1px solid black;
-   position: relative;
-   overflow: hidden;
+    border: 1px solid black;
+    position: relative;
+    overflow: hidden;
+    float: left;
 }
 
 #skier {
-   position: absolute;
+    position: absolute;
 }
 
+#info {
+    float: left;
+}
 
