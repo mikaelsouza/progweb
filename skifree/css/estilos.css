@@ -17,7 +17,44 @@
     background-position: -67px -2px;
     width: 15px;
     height: 32px;
+    position: absolute;
 }
+
+.yeti1 {
+    background-image: url(yeti1.png);
+    width: 29px;
+    height: 43px;
+    position: absolute;
+    animation: yeti_animation 0.1s steps(2) infinite;
+
+}
+
+.yeti2 {
+    background-image: url(yeti2.png);
+    width: 29px;
+    height: 43px;
+    position: absolute;
+    animation: yeti_animation 0.1s steps(2) infinite;
+}
+
+@keyframes yeti_animation {
+    from{background-position-x:0px;}
+    to{background-position-x:58px;}
+  }
+
+.yeti_kill {
+    background-image: url(ripinpeace.png);
+    width: 30px;
+    height: 43px;
+    position: absolute;
+    animation: yeti_kill_animation 1s steps(5) infinite;
+}
+
+@keyframes yeti_kill_animation {
+    from{background-position-x:0px;}
+    to{background-position-x:-150px;}
+  }
+
 
 .fallen {
     background-image: url(skier.png);
@@ -73,7 +110,7 @@
 
 @keyframes animate_dog {
     from{background-position-x:0px;}
-    to{background-position-x:88px;}
+    to{background-position-x:-88px;}
   }
 
 .rock {

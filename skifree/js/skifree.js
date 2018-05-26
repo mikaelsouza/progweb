@@ -16,6 +16,8 @@
     var dogFrames = 0;
     var paused = false;
     var restart_val = false;
+    var yetiBoolean = false;
+    var yeti;
 
 
     function init() {
@@ -33,9 +35,12 @@
         obstaculos.forEach(obstaculo => {
             obstaculo.element.remove();
         });
+        yeti.element.remove();
+        yeti = undefined;
         obstaculos = [];
         vidas_div.innerHTML = "";
         distancia_div.innerHTML = "";
+        yetiBoolean = false;
     }
 
     window.addEventListener('keydown', function (e) {
@@ -69,8 +74,8 @@
 
         this.element = document.getElementById("skier");
         this.direcao = 1; //0-esquerda;1-frente;2-direita
-        this.x_vel = 1;
-        this.y_vel = 1;
+        this.x_vel = 2;
+        this.y_vel = 2;
         this.acelerado = false;
         this.vidas = 3;
         this.invuneravel = false;
@@ -121,21 +126,29 @@
             } else {
                 this.distancia += 20 / FPS;
             }
-            this.central_x = parseInt(this.element.style.left) + parseInt(this.element.clientWidth / 2);
+            this.central_x = Math.round(parseInt(this.element.style.left) + (parseInt(this.element.clientWidth) / 2));
+            console.log(this.central_x)
         }
 
         this.acelerar = function () {
-            this.x_vel = 2;
-            this.y_vel = 2;
+            this.x_vel = 4;
+            this.y_vel = 4;
             this.acelerado = true;
             if (this.element.className == 'fallen')
                 this.element.className = 'para-frente';
         }
 
         this.frear = function () {
-            this.x_vel = 1;
-            this.y_vel = 1;
+            this.x_vel = 2;
+            this.y_vel = 2;
             this.acelerado = false;
+        }
+
+        this.ripinpeace = function () {
+            this.element.className = 'yeti_kill';
+            yeti.element.remove();
+            paused = true;
+            restart_val = true;
         }
 
         this.dano = function () {
@@ -152,6 +165,46 @@
 
         this.cura = function () {
             this.vidas += 1;
+        }
+    }
+
+    function callYeti() {
+        if (skier.distancia > 1900 && yetiBoolean == false) {
+            if (Math.random() * 100 > 50) {
+                yetiBoolean = true;
+                yeti = new Yeti();
+            }
+        }
+    }
+
+    function Yeti() {
+        this.element = document.createElement('div');
+        montanha.element.appendChild(this.element);
+        this.element.style.top = -100 + 'px';
+        this.element.style.left = Math.floor(Math.random() * TAMX) + 'px';
+        this.element.className = 'yeti1';
+        this.central_x = Math.round(parseInt(this.element.style.left) + (parseInt(this.element.clientWidth) / 2));
+        this.y = parseInt(this.element.style.top) + parseInt(this.element.clientHeight);
+        this.speedX = 0;
+        this.speedY = 3;
+
+        this.move = function () {
+            var top = parseInt(this.element.style.top);
+            var left = parseInt(this.element.style.left);
+            this.element.style.top = top + this.speedY - skier.x_vel + 'px';
+            var direction;
+            if (Math.round(this.central_x) < Math.round(skier.central_x)) {
+                direction = 3 - skier.x_vel;
+                this.element.className = 'yeti1';
+            } else if (Math.round(this.central_x) > Math.round(skier.central_x)) {
+                direction = -3 + skier.x_vel;
+                this.element.className = 'yeti2';
+            }
+            console.log(this.central_x);
+            console.log(skier.central_x);
+            this.element.style.left = left + (direction * (this.speedY - skier.y_vel)) + 'px';
+            this.central_x = parseInt(this.element.style.left) + (parseInt(this.element.clientWidth) / 2);
+            this.y = parseInt(this.element.style.top) + parseInt(this.element.clientHeight);
         }
     }
 
@@ -189,6 +242,10 @@
         if (paused) {
             return;
         }
+        callYeti();
+        if (yeti !== undefined) {
+            yeti.move();
+        }
         var random = Math.floor(Math.random() * 1000);
         if (random <= PROB_MUSHROOM * 10 * skier.x_vel) {
             var mushroom = new Obstaculo();
@@ -199,8 +256,6 @@
             var obstaculo = new Obstaculo();
             obstaculos.push(obstaculo);
         }
-
-
         // Remove árvores que estão fora da tela
         for (var i = obstaculos.length - 1; i >= 0; i--) {
             var obstaculo_y = parseInt(obstaculos[i].element.style.top);
@@ -219,6 +274,15 @@
                     skier.dano();
                 }
                 break;
+            }
+        }
+        if (yeti) {
+            var yeti_x0 = parseInt(yeti.element.style.left);
+            var yeti_x1 = yeti_x0 + parseInt(yeti.element.clientWidth);
+            if (skier.central_x >= yeti_x0 && skier.central_x <= yeti_x1) {
+                if (skier.element.style.top == yeti.element.style.top) {
+                    skier.ripinpeace();
+                }
             }
         }
         skier.andar();
@@ -249,7 +313,6 @@
         update();
         draw();
     }
-
     init();
 
 })();
