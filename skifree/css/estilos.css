@@ -27,6 +27,44 @@
     position: absolute;
 }
 
+.burning_bush {
+    background-image: url(burning_bush.png);
+    background-position: 0px 0px;
+    width: 23px;
+    height: 27px;
+    position: absolute;
+    animation: animate_burning_bush 1s steps(4) infinite;
+}
+
+@keyframes animate_burning_bush {
+    from{background-position-x:0px;}
+    to{background-position-x:92px;}
+  }
+
+.rock {
+    background-image: url(rock.png);
+    background-position: 0px 0px;
+    width: 23px;
+    height: 11px;
+    position: absolute;
+}
+
+.big_tree {
+    background-image: url(big_tree.png);
+    background-position: 0px 0px;
+    width: 32px;
+    height: 64px;
+    position: absolute;
+}
+
+.tree_stump {
+    background-image: url(tree_stump.png);
+    background-position: 0px 0px;
+    width: 16px;
+    height: 11px;
+    position: absolute;
+}
+
 #montanha {
     border: 1px solid black;
     position: relative;
