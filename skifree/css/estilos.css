@@ -19,6 +19,13 @@
     height: 32px;
 }
 
+.fallen {
+    background-image: url(skier.png);
+    background-position: -83px -84px;
+    width: 32px;
+    height: 25px; 
+}
+
 .arvore {
     background-image: url(obstacles.png);
     background-position: -0px -31px;   
@@ -39,6 +46,20 @@
 @keyframes animate_burning_bush {
     from{background-position-x:0px;}
     to{background-position-x:92px;}
+  }
+
+.dog {
+    background-image: url(dog.png);
+    background-position: 0px 0px;
+    width: 22px;
+    height: 19px;
+    position: absolute;
+    animation: animate_dog 1s steps(4) infinite;
+}
+
+@keyframes animate_dog {
+    from{background-position-x:0px;}
+    to{background-position-x:88px;}
   }
 
 .rock {
@@ -64,6 +85,8 @@
     height: 11px;
     position: absolute;
 }
+
+
 
 #montanha {
     border: 1px solid black;

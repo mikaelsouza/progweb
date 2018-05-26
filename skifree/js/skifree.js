@@ -8,10 +8,13 @@
     var montanha;
     var skier;
     var direcoes = ['para-esquerda', 'para-frente', 'para-direita'];
-    var classes = ['arvore', 'burning_bush', 'rock', 'big_tree', 'tree_stump']
+    var classes = ['dog', 'arvore', 'burning_bush', 'rock', 'big_tree', 'tree_stump']
     var obstaculos = [];
     var vidas_div;
     var distancia_div;
+    var dogFrames = 0;
+    var paused = false;
+
 
     function init() {
         montanha = new Montanha();
@@ -31,13 +34,23 @@
         obstaculos = [];
         vidas_div.innerHTML = "";
         distancia_div.innerHTML = "";
-
     }
 
     window.addEventListener('keydown', function (e) {
-        if (e.key == 'a') skier.mudarDirecao(-1);
-        else if (e.key == 'd') skier.mudarDirecao(1);
-        else if (e.key == 'f') skier.acelerar();
+        if (e.key == 'a') {
+            skier.mudarDirecao(-1);
+            paused = false;
+        }
+        else if (e.key == 'd') {
+            skier.mudarDirecao(1);
+            paused = false;
+        } else if (e.key == 'f') {
+            skier.acelerar();
+            paused = false;
+        } else if (e.key == 's') {
+            skier.setarDirecao(1);
+            paused = false;
+        }
     });
 
     window.addEventListener('keyup', function (e) {
@@ -79,6 +92,9 @@
         }
 
         this.andar = function () {
+            if (paused) {
+                return;
+            }
             var x0_position = parseInt(this.element.style.left);
             var x1_position = parseInt(this.element.clientWidth) + x0_position;
             if (x0_position < 0) {
@@ -106,6 +122,8 @@
             this.x_vel = 2;
             this.y_vel = 2;
             this.acelerado = true;
+            if (this.element.className == 'fallen')
+                this.element.className = 'para-frente';
         }
 
         this.frear = function () {
@@ -119,14 +137,16 @@
             if (this.vidas == 0) {
                 restart();
             }
+            this.element.className = 'fallen';
+            paused = true;
         }
     }
 
     function Obstaculo() {
         this.element = document.createElement('div');
         montanha.element.appendChild(this.element);
-        var idx = Math.floor(Math.random() * classes.length);
-        this.element.className = classes[idx];
+        this.classNumber = Math.floor(Math.random() * classes.length);
+        this.element.className = classes[this.classNumber];
         this.element.style.top = TAMY + "px";
         this.element.style.left = Math.floor(Math.random() * TAMX) + "px";
 
@@ -153,7 +173,9 @@
     function update() {
 
         // A cada frame calcula a chance de inserir novas árvores
-
+        if (paused) {
+            return;
+        }
         var random = Math.floor(Math.random() * 1000);
         if (random <= PROB_OBSTACULO * 10 * skier.x_vel) {
             var obstaculo = new Obstaculo();
@@ -163,15 +185,15 @@
         // Remove árvores que estão fora da tela
         for (var i = obstaculos.length - 1; i >= 0; i--) {
             var obstaculo_y = parseInt(obstaculos[i].element.style.top);
-            if (obstaculo_y < -40) {
+            if (obstaculo_y < -100) {
                 obstaculos[i].element.remove();
                 obstaculos.splice(i, 1);
                 break;
             }
             if (obstaculos[i].verificaColisao()) {
-                skier.dano();
                 obstaculos[i].element.remove();
                 obstaculos.splice(i, 1);
+                skier.dano();
                 break;
             }
         }
@@ -179,9 +201,21 @@
     }
 
     function draw() {
+        if (paused) {
+            return;
+        }
+        dogFrames += 1;
+        if (dogFrames == 60) {
+            dogFrames = 0;
+        }
         for (var i = 0; i < obstaculos.length; i++) {
             var obstaculo_y = parseInt(obstaculos[i].element.style.top);
             obstaculos[i].element.style.top = (obstaculo_y - skier.x_vel) + "px";
+            if (obstaculos[i].classNumber == 0) {
+                if (dogFrames == 45 || dogFrames == 30) {
+                    obstaculos[i].element.style.left = parseInt(obstaculos[i].element.style.left) + 5 + "px";
+                }
+            }
         }
         distancia_div.innerHTML = Math.round(skier.distancia);
         vidas_div.innerHTML = skier.vidas;
