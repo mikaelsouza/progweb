@@ -26,6 +26,20 @@
     height: 25px; 
 }
 
+.dead {
+    background-image: url(skier.png);
+    background-position: -242px -2px;
+    width: 31px;
+    height: 31px;
+}
+
+.mushroom {
+    background-image: url(mushroom.png); 
+    width: 10px;
+    height: 11px;   
+    position: absolute;
+}
+
 .arvore {
     background-image: url(obstacles.png);
     background-position: -0px -31px;   

@@ -4,6 +4,7 @@
     const TAMX = 500;
     const TAMY = 600;
     const PROB_OBSTACULO = 3;
+    const PROB_MUSHROOM = 0.05;
     var gameLoop;
     var montanha;
     var skier;
@@ -14,6 +15,7 @@
     var distancia_div;
     var dogFrames = 0;
     var paused = false;
+    var restart_val = false;
 
 
     function init() {
@@ -95,6 +97,10 @@
             if (paused) {
                 return;
             }
+            if (restart_val) {
+                restart();
+                restart_val = false;
+            }
             var x0_position = parseInt(this.element.style.left);
             var x1_position = parseInt(this.element.clientWidth) + x0_position;
             if (x0_position < 0) {
@@ -135,10 +141,17 @@
         this.dano = function () {
             this.vidas -= 1;
             if (this.vidas == 0) {
-                restart();
+                this.element.className = 'dead';
+                paused = true;
+                restart_val = true;
+            } else {
+                this.element.className = 'fallen';
+                paused = true;
             }
-            this.element.className = 'fallen';
-            paused = true;
+        }
+
+        this.cura = function () {
+            this.vidas += 1;
         }
     }
 
@@ -177,10 +190,16 @@
             return;
         }
         var random = Math.floor(Math.random() * 1000);
-        if (random <= PROB_OBSTACULO * 10 * skier.x_vel) {
+        if (random <= PROB_MUSHROOM * 10 * skier.x_vel) {
+            var mushroom = new Obstaculo();
+            mushroom.element.className = 'mushroom';
+            mushroom.classNumber = -10;
+            obstaculos.push(mushroom);
+        } else if (random <= PROB_OBSTACULO * 10 * skier.x_vel) {
             var obstaculo = new Obstaculo();
             obstaculos.push(obstaculo);
         }
+
 
         // Remove árvores que estão fora da tela
         for (var i = obstaculos.length - 1; i >= 0; i--) {
@@ -192,8 +211,13 @@
             }
             if (obstaculos[i].verificaColisao()) {
                 obstaculos[i].element.remove();
+                var obstaculo = obstaculos[i];
                 obstaculos.splice(i, 1);
-                skier.dano();
+                if (obstaculo.classNumber == -10) {
+                    skier.cura();
+                } else {
+                    skier.dano();
+                }
                 break;
             }
         }
