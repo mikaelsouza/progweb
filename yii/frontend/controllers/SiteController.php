@@ -140,7 +140,8 @@ class SiteController extends Controller
      */
     public function actionAbout()
     {
-        $date = date('D, d M Y H:i:s');
+        date_default_timezone_set('America/Manaus');
+        $date = date('D, d M Y H:i:s O');
         return $this->render('about',['date' => $date]);
     }
 
