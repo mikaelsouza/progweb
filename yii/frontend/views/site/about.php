@@ -14,5 +14,4 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>Data: <?= $date ?></p>
 
-    <code><?= __FILE__ ?></code>
 </div>
