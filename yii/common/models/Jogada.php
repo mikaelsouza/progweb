@@ -30,7 +30,7 @@ class Jogada extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_user', 'pontuacao', 'data_hora'], 'required'],
+            [['id_user', 'pontuacao', 'data_hora'], 'required', 'message' => 'Este campo é obrigatório'],
             [['id_user', 'pontuacao'], 'integer'],
             [['data_hora'], 'string', 'max' => 45],
             [['id_user'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['id_user' => 'id']],
@@ -44,9 +44,9 @@ class Jogada extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'id_user' => 'Id User',
-            'pontuacao' => 'Pontuacao',
-            'data_hora' => 'Data Hora',
+            'id_user' => 'ID do Usuário',
+            'pontuacao' => 'Pontuação',
+            'data_hora' => 'Horário de Pontuação',
         ];
     }
 
