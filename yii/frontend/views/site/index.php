@@ -14,6 +14,6 @@ $this->title = 'Site do Mikas :)';
         <?= Html::img('@web/imgs/skifree.jpg',['width'=>'400']) ?>
         <p class="lead">Você está prestes a jogar uma cópia barata de Skifree!</p>
 
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
+        <p><a class="btn btn-lg btn-success" href="index.php?r=jogo">Jogar!</a></p>
     </div>
 </div>
